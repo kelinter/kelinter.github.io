@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelly Interiano</title>
+  <link rel="stylesheet" href="/style.css">
+  <style>
+    /* CSS for the typewriter effect */
+    .typewriter h1 {
+      display: inline-block;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 0.15em solid purple; /* Change cursor color to purple */
+      animation: typing 3.5s steps(30, end), blink-caret 0.75s step-end infinite;
+      font-family: monospace;
+      font-size: 2em;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 15em; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: purple; } /* Change blinking color to purple */
+    }
+
+    /* Full-width navigation bar styles */
+    nav {
+      width: 100%;
+      background-color: hotpink; /* Hot pink background color */
+      padding: 1em;
+    }
+
+    nav ul {
+      list-style-type: none;
+      display: flex;
+      justify-content: center; /* Center the navigation items */
+      margin: 0;
+      padding: 0;
+    }
+
+    nav ul li {
+      margin: 0 10px;
+    }
+
+    nav ul li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-family: cursive;
+      font-size: 1.5em; /* Increase font size */
+    }
+
+    nav ul li a:hover {
+      background-color: #80cce5; /* Light blue highlight on hover */
+    }
+  </style>
+</head>
+<body id="body1">
+  <!-- Typewriter effect for the header -->
+  <header class="typewriter">
+    <h1>Hi, it's Kelly!</h1>
+  </header>
+
+  <!-- Navigation bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about me.html">About me</a></li>
+      <li><a href="portfolio.html">Portfolio</a></li>
+    </ul>
+  </nav>
+
+  <!-- Container with image and introductory text -->
+  <div class="container-image-left">
+    <img id="me" src="assets/me.JPG" alt="A selfie of me.">
+    <p>
+      Hey! My name is Kelly Interiano. I am 19 years old and a rising junior pursuing a major in Computer Engineering
+      and a minor in Physics. I live in Long Island, NY, and attend Bucknell University in Lewisburg, PA. I'm determined,
+      passionate, and curious about how far technology will take us. I love to play soccer, hang out with friends, and
+      spend time with my family. I'm excited to learn more about coding and computer science. I am currently open to
+      work and am actively looking for an internship. I hope to learn more about embedded systems as well as AI/machine
+      learning. After college, I plan on attending graduate school and working in the field of Artificial Intelligence.
+      If you wish to contact me, below is my contact information or you can do it via this website. Thanks for visiting!
+    </p>
+  </div>
+
+  <!-- Contact form -->
+  <div class="contact-container">
+    <h1>Contact Me</h1>
+    <form action="kellyinteriano10@gmail.com" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" rows="4" required></textarea>
+      <button type="submit">Send</button>
+    </form>
+  </div>
+
+  <!-- Social media links -->
+  <div class="social-container">
+    <h2>Follow Me</h2>
+    <a href="https://www.linkedin.com/in/kelly-interiano" target="_blank">
+      <img src="assets/linkedin.png" alt="LinkedIn" class="social-icon">
+    </a>
+    <a href="https://www.snapchat.com/add/kellyinteriano4?sender_web_id=f483a638-dd1c-4195-8acc-597c1245cecd&device_type=desktop&is_copy_url=true" target="_blank">
+      <img src="assets/snapchat.png" alt="Snapchat" class="social-icon">
+    </a>
+  </div>
+
+  <script>
+    // JavaScript is not needed in this case as CSS handles the animation
+  </script>
+</body>
+</html>
