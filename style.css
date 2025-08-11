@@ -8,6 +8,7 @@
 body {
   height: 100%;
   margin: 0;
+  font-family: Arial, sans-serif;
 }
 
 /* Apply styles to #body1 */
@@ -16,7 +17,8 @@ body {
   flex-direction: column;
   background-color: #71c5f9;
   margin: 1em;
-  border: 10px solid hotpink; /* Add hot pink border */
+  border: 10px solid hotpink;
+  padding: 0;
 }
 
 /* Additional styles for navigation and text */
@@ -77,14 +79,11 @@ p {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: add a subtle shadow to the image */
 }
 
-/* for web links */
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Styles for body2 and body3 (About and Portfolio pages) */
+#body2, #body3 {
+  background-color: #71c5f9;
+  margin: 1em;
+  border: 10px solid hotpink;
   padding: 20px;
 }
 
