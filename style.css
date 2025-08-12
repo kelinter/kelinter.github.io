@@ -160,3 +160,76 @@ button:hover {
   height: 40px;
   margin: 0 10px;
 }
+
+/* Mobile Responsive Design */
+@media screen and (max-width: 768px) {
+  /* Body and layout adjustments */
+  #body1, #body2, #body3 {
+    margin: 0.5em;
+    border-width: 5px;
+    padding: 10px;
+  }
+
+  /* Navigation adjustments */
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  nav ul li a {
+    font-size: 1.2em;
+    padding: 10px 12px;
+  }
+
+  /* Header text size adjustments */
+  .typewriter h1 {
+    font-size: 1.5em;
+    animation: typing 3.5s steps(20, end), blink-caret 0.75s step-end infinite;
+  }
+  
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 12em; }
+  }
+
+  #aboutme-header, #portfolio-header {
+    font-size: 2.5em;
+  }
+
+  /* Content container adjustments */
+  .container-image-left {
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+  }
+
+  #me {
+    width: 150px;
+    margin-bottom: 20px;
+  }
+
+  /* Contact and social container adjustments */
+  .contact-container, .social-container {
+    width: 90%;
+    max-width: 350px;
+    margin: 15px auto;
+  }
+
+  /* Form adjustments */
+  input, textarea, button {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  /* Image size adjustments for about page */
+  .aboutme-images {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Text adjustments */
+  p {
+    padding: 15px;
+    font-size: 1em;
+    line-height: 1.5;
+  }
+}
