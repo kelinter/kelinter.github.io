@@ -493,3 +493,171 @@ button:hover {
     justify-content: center;
   }
 }
+
+/* Professional About Me Page Styles */
+.about-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.about-intro {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.intro-text {
+  font-size: 1.3rem;
+  line-height: 1.7;
+  color: #64748b;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-section {
+  margin-bottom: 3rem;
+}
+
+.about-section h2 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  color: #0f172a;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #0ea5e9;
+  padding-bottom: 0.5rem;
+}
+
+.education-item, .experience-item {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  margin-bottom: 1.5rem;
+}
+
+.education-item h3, .experience-item h3 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 1.3rem;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.company {
+  color: #0ea5e9;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.experience-list {
+  list-style: none;
+  padding: 0;
+}
+
+.experience-list li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.experience-list li:before {
+  content: '▸';
+  color: #0ea5e9;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.skill-category {
+  background: #ffffff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.skill-category h4 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 0.75rem;
+  font-size: 1.1rem;
+}
+
+.skill-category p {
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+.personal-touch {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+}
+
+.personal-image {
+  width: 150px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.image-caption {
+  color: #64748b;
+  font-style: italic;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+/* Mobile responsiveness for About Me */
+@media screen and (max-width: 768px) {
+  .about-container {
+    padding: 0 1rem;
+  }
+  
+  .intro-text {
+    font-size: 1.1rem;
+  }
+  
+  .about-section h2 {
+    font-size: 1.5rem;
+  }
+  
+  .education-item, .experience-item {
+    padding: 1.5rem;
+  }
+  
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .personal-touch {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .personal-image {
+    width: 200px;
+    height: 160px;
+  }
+}
