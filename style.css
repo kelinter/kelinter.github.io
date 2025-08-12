@@ -22,10 +22,11 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #f8fafc;
-  margin: 0;
-  border: none;
+  margin: 0.5rem;
+  border: 2px solid #ec4899;
+  border-radius: 8px;
   padding: 2rem 1rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 1rem);
 }
 
 /* Professional navigation */
@@ -110,10 +111,11 @@ p {
 /* Styles for body2 and body3 (About and Portfolio pages) */
 #body2, #body3 {
   background-color: #f8fafc;
-  margin: 0;
-  border: none;
+  margin: 0.5rem;
+  border: 2px solid #0ea5e9;
+  border-radius: 8px;
   padding: 2rem 1rem;
-  min-height: 100vh;
+  min-height: calc(100vh - 1rem);
 }
 
 .container-image-left {
