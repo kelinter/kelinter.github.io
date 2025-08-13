@@ -76,13 +76,19 @@ nav ul li a:hover {
   color: #0f172a;
 }
 
-#aboutme-header, #portfolio-header {
+/* Consistent header styling for all pages */
+header h1, #aboutme-header h1, #portfolio-header h1 {
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 3rem;
   text-align: center;
   margin: 2rem 0;
   color: #0f172a;
+}
+
+header, #aboutme-header, #portfolio-header {
+  text-align: center;
+  margin: 2rem 0;
 }
 
 p {
