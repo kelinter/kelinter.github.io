@@ -23,7 +23,7 @@ body {
   align-items: center;
   background-color: #f8fafc;
   margin: 0.5rem;
-  border: 2px solid #ec4899;
+  border: 2px solid #0ea5e9;
   border-radius: 8px;
   padding: 2rem 1rem;
   min-height: calc(100vh - 1rem);
@@ -223,8 +223,9 @@ button:hover {
   /* Body and layout adjustments */
   #body1, #body2, #body3 {
     margin: 0.5em;
-    border-width: 5px;
-    padding: 10px;
+    border: 2px solid #0ea5e9;
+    border-radius: 8px;
+    padding: 1rem;
   }
 
   /* Navigation adjustments */
