@@ -326,19 +326,19 @@
             LOST: 'LOST'
         };
         
-        // Difficulty enum equivalent (matching your Java implementation)
+        // Difficulty enum equivalent (matching Java implementation)
         const Difficulty = {
             BEGINNER: { name: 'BEGINNER', rows: 8, cols: 8, mines: 10 },
             INTERMEDIATE: { name: 'INTERMEDIATE', rows: 16, cols: 16, mines: 40 },
             EXPERT: { name: 'EXPERT', rows: 22, cols: 22, mines: 99 }
         };
         
-        // Cell class (ported from your Java Cell.java)
+        // Cell class (ported from Java Cell.java)
         class Cell {
             constructor(row, col) {
                 this.row = row;
                 this.col = col;
-                this._hasMine = false;
+                this.hasMine = false;
                 this.revealed = false;
                 this.flagged = false;
                 this.adjacentMines = 0;
@@ -361,11 +361,11 @@
             }
             
             hasMine() {
-                return this._hasMine;
+                return this.hasMine;
             }
             
             setHasMine(hasMine) {
-                this._hasMine = hasMine;
+                this.hasMine = hasMine;
             }
             
             isRevealed() {
@@ -388,14 +388,14 @@
                 if (!this.revealed) {
                     return this.flagged ? "F" : ".";
                 }
-                if (this._hasMine) {
+                if (this.hasMine) {
                     return "*";
                 }
                 return this.adjacentMines === 0 ? " " : this.adjacentMines.toString();
             }
         }
         
-        // Timer class (ported from your Java Timer.java)
+        // Timer class (ported from Java Timer.java)
         class Timer {
             constructor() {
                 this.seconds = 0;
@@ -435,7 +435,7 @@
             }
         }
         
-        // MinesweeperBoard class (ported from your Java MinesweeperBoard.java)
+        // MinesweeperBoard class (ported from Java MinesweeperBoard.java)
         class MinesweeperBoard {
             constructor(rows, cols, mineCount) {
                 this.rows = rows;
@@ -549,7 +549,7 @@
             }
         }
         
-        // MinesweeperGame class (ported from your Java MinesweeperGame.java)
+        // MinesweeperGame class (ported from Java MinesweeperGame.java)
         class MinesweeperGame {
             constructor(difficulty) {
                 this.difficulty = difficulty;
