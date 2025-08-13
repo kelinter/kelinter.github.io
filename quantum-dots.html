@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Dot Spectrum Analyzer - Kelly Interiano</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .quantum-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
+        }
+        
+        .quantum-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .quantum-header h1 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .physics-description {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #0ea5e9;
+        }
+        
+        .physics-description h3 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .attribution {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .attribution a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+        
+        .attribution a:hover {
+            text-decoration: underline;
+        }
+        
+        .controls-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .control-panel {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .control-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .control-group:last-child {
+            margin-bottom: 0;
+        }
+        
+        .control-label {
+            display: block;
+            font-weight: 600;
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+        }
+        
+        .slider-container {
+            margin-bottom: 1rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 6px;
+            border-radius: 3px;
+            background: #e2e8f0;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0ea5e9;
+            cursor: pointer;
+        }
+        
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #0ea5e9;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .slider-value {
+            text-align: center;
+            font-weight: 600;
+            color: #0ea5e9;
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+        
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .radio-option input[type="radio"] {
+            accent-color: #0ea5e9;
+        }
+        
+        .checkbox-option {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .checkbox-option input[type="checkbox"] {
+            accent-color: #0ea5e9;
+        }
+        
+        .chart-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            height: 400px;
+            position: relative;
+        }
+        
+        .physics-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .info-card {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .info-card h4 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+        
+        .info-card ul {
+            margin-left: 1rem;
+            color: #64748b;
+        }
+        
+        .info-card li {
+            margin-bottom: 0.25rem;
+        }
+        
+        .quantum-actions {
+            text-align: center;
+            margin-top: 2rem;
+            gap: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 0.75rem 2rem;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .action-btn:hover {
+            background: #0284c7;
+        }
+        
+        .action-btn.secondary {
+            background: #64748b;
+        }
+        
+        .action-btn.secondary:hover {
+            background: #475569;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            color: #0284c7;
+        }
+        
+        @media (max-width: 768px) {
+            .quantum-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .controls-section {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .physics-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .quantum-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .radio-group {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="quantum-container">
+        <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
+        
+        <div class="quantum-header">
+            <h1>Quantum Dot Spectrum Analyzer</h1>
+            <p>Interactive simulation of 1D quantum dot emission and absorption spectra</p>
+            <div class="attribution">
+                Ported from original <a href="https://github.com/kelinter/quantum-dot-spectrum" target="_blank">Python implementation</a>
+                | Real-time quantum physics simulation
+            </div>
+        </div>
+        
+        <div class="physics-description">
+            <h3>🔬 Physics Concept</h3>
+            <p>This simulator models a <strong>1D quantum dot</strong> as a "particle in a box" system. As the quantum dot size changes, the spacing between energy levels changes, directly affecting the optical emission and absorption spectrum. The calculations use <strong>time-dependent perturbation theory</strong> and <strong>Fermi's Golden Rule</strong> to determine transition probabilities.</p>
+        </div>
+        
+        <div class="controls-section">
+            <div class="control-panel">
+                <h3>Simulation Controls</h3>
+                
+                <div class="control-group">
+                    <label class="control-label">Quantum Dot Size (nm)</label>
+                    <div class="slider-container">
+                        <input type="range" id="size-slider" class="slider" min="5" max="20" step="0.5" value="10">
+                        <div class="slider-value" id="size-value">10.0 nm</div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Spectrum Type</label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="emission" name="spectrum-type" value="emission" checked>
+                            <label for="emission">Emission</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="absorption" name="spectrum-type" value="absorption">
+                            <label for="absorption">Absorption</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <div class="checkbox-option">
+                        <input type="checkbox" id="normalize" checked>
+                        <label for="normalize">Normalize Spectrum</label>
+                    </div>
+                </div>
+                
+                <div class="control-group">
+                    <label class="control-label">Broadening (eV)</label>
+                    <div class="slider-container">
+                        <input type="range" id="broadening-slider" class="slider" min="0.01" max="0.2" step="0.01" value="0.05">
+                        <div class="slider-value" id="broadening-value">0.05 eV</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <canvas id="spectrum-chart"></canvas>
+            </div>
+        </div>
+        
+        <div class="physics-info">
+            <div class="info-card">
+                <h4>⚡ Quantum Mechanics Principles</h4>
+                <ul>
+                    <li><strong>Particle in a box:</strong> Electron confined in 1D potential well</li>
+                    <li><strong>Energy quantization:</strong> E = n²h²/(8mL²)</li>
+                    <li><strong>Quantum confinement:</strong> Smaller dots → larger energy gaps</li>
+                    <li><strong>Dipole transitions:</strong> Selection rules determine allowed transitions</li>
+                </ul>
+            </div>
+            
+            <div class="info-card">
+                <h4>🔧 Technical Implementation</h4>
+                <ul>
+                    <li><strong>Fermi's Golden Rule:</strong> Transition rate calculations</li>
+                    <li><strong>Matrix elements:</strong> Electric-dipole approximation</li>
+                    <li><strong>Gaussian broadening:</strong> Realistic spectral line shapes</li>
+                    <li><strong>Real-time computation:</strong> Interactive parameter adjustment</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="quantum-actions">
+            <button class="action-btn" onclick="resetToDefaults()">Reset Parameters</button>
+            <a href="https://github.com/kelinter/quantum-dot-spectrum" target="_blank" class="action-btn secondary">View Python Source</a>
+        </div>
+    </div>
+    
+    <script>
+        // Physical constants (in eV units for convenience)
+        const HBAR = 6.582119569e-16; // eV⋅s
+        const ELECTRON_MASS = 9.1093837015e-31; // kg
+        const ELEMENTARY_CHARGE = 1.602176634e-19; // C
+        const EV_TO_JOULE = 1.602176634e-19;
+        
+        // Effective mass and other parameters for quantum dot
+        const EFFECTIVE_MASS_RATIO = 0.067; // For GaAs, typical quantum dot material
+        const ELECTRIC_FIELD = 1e7; // V/m, typical field strength
+        
+        // Chart instance
+        let chart;
+        
+        // Initialize the quantum dot simulator
+        class QuantumDotSimulator {
+            constructor() {
+                this.size = 10.0; // nm
+                this.spectrumType = 'emission';
+                this.normalize = true;
+                this.broadening = 0.05; // eV
+                this.maxQuantumNumber = 10; // Consider transitions up to n=10
+            }
+            
+            // Calculate energy level for quantum number n in a box of length L
+            calculateEnergyLevel(n, L) {
+                // E = n²ℏ²π²/(2mL²) in SI units, then convert to eV
+                const L_meters = L * 1e-9; // Convert nm to meters
+                const mass = ELECTRON_MASS * EFFECTIVE_MASS_RATIO;
+                const energy_joules = (n * n * Math.pow(HBAR * EV_TO_JOULE, 2) * Math.pow(Math.PI, 2)) / 
+                                     (2 * mass * L_meters * L_meters);
+                return energy_joules / EV_TO_JOULE; // Convert back to eV
+            }
+            
+            // Calculate electric dipole matrix element between states k and n
+            calculateMatrixElement(k, n, L) {
+                if ((k + n) % 2 === 0) {
+                    return 0; // Selection rule: transitions only between different parity states
+                }
+                
+                const L_meters = L * 1e-9;
+                // For particle in a box, matrix element = <k|x|n>
+                // Analytical result for electric dipole matrix element
+                const factor = 16 * k * n * L_meters / (Math.PI * Math.PI * Math.pow(k * k - n * n, 2));
+                return Math.abs(factor);
+            }
+            
+            // Generate emission spectrum (transitions from higher to lower energy states)
+            generateEmissionSpectrum() {
+                const transitions = [];
+                
+                for (let nInitial = 2; nInitial <= this.maxQuantumNumber; nInitial++) {
+                    for (let nFinal = 1; nFinal < nInitial; nFinal++) {
+                        const E_initial = this.calculateEnergyLevel(nInitial, this.size);
+                        const E_final = this.calculateEnergyLevel(nFinal, this.size);
+                        const photonEnergy = E_initial - E_final;
+                        
+                        if (photonEnergy > 0) {
+                            const matrixElement = this.calculateMatrixElement(nInitial, nFinal, this.size);
+                            const intensity = matrixElement * matrixElement; // Proportional to |<i|μ|f>|²
+                            
+                            transitions.push({
+                                energy: photonEnergy,
+                                intensity: intensity,
+                                initial: nInitial,
+                                final: nFinal
+                            });
+                        }
+                    }
+                }
+                
+                return transitions;
+            }
+            
+            // Generate absorption spectrum (transitions from lower to higher energy states)
+            generateAbsorptionSpectrum() {
+                const transitions = [];
+                
+                for (let nInitial = 1; nInitial < this.maxQuantumNumber; nInitial++) {
+                    for (let nFinal = nInitial + 1; nFinal <= this.maxQuantumNumber; nFinal++) {
+                        const E_initial = this.calculateEnergyLevel(nInitial, this.size);
+                        const E_final = this.calculateEnergyLevel(nFinal, this.size);
+                        const photonEnergy = E_final - E_initial;
+                        
+                        if (photonEnergy > 0) {
+                            const matrixElement = this.calculateMatrixElement(nInitial, nFinal, this.size);
+                            const intensity = matrixElement * matrixElement;
+                            
+                            transitions.push({
+                                energy: photonEnergy,
+                                intensity: intensity,
+                                initial: nInitial,
+                                final: nFinal
+                            });
+                        }
+                    }
+                }
+                
+                return transitions;
+            }
+            
+            // Apply Gaussian broadening to create realistic spectral lines
+            applyBroadening(transitions, energyRange, numPoints = 1000) {
+                const minEnergy = Math.min(...energyRange);
+                const maxEnergy = Math.max(...energyRange);
+                const energyStep = (maxEnergy - minEnergy) / (numPoints - 1);
+                
+                const spectrum = [];
+                
+                for (let i = 0; i < numPoints; i++) {
+                    const energy = minEnergy + i * energyStep;
+                    let intensity = 0;
+                    
+                    // Sum Gaussian contributions from all transitions
+                    transitions.forEach(transition => {
+                        const gaussian = transition.intensity * 
+                            Math.exp(-Math.pow(energy - transition.energy, 2) / 
+                                   (2 * this.broadening * this.broadening));
+                        intensity += gaussian;
+                    });
+                    
+                    spectrum.push({ energy, intensity });
+                }
+                
+                // Normalize if requested
+                if (this.normalize && spectrum.length > 0) {
+                    const maxIntensity = Math.max(...spectrum.map(point => point.intensity));
+                    if (maxIntensity > 0) {
+                        spectrum.forEach(point => {
+                            point.intensity /= maxIntensity;
+                        });
+                    }
+                }
+                
+                return spectrum;
+            }
+            
+            // Generate complete spectrum based on current parameters
+            generateSpectrum() {
+                const transitions = this.spectrumType === 'emission' ? 
+                    this.generateEmissionSpectrum() : 
+                    this.generateAbsorptionSpectrum();
+                
+                if (transitions.length === 0) return [];
+                
+                const energies = transitions.map(t => t.energy);
+                const minEnergy = Math.min(...energies) - 0.5;
+                const maxEnergy = Math.max(...energies) + 0.5;
+                
+                return this.applyBroadening(transitions, [minEnergy, maxEnergy]);
+            }
+        }
+        
+        // Initialize simulator and chart
+        const simulator = new QuantumDotSimulator();
+        
+        function initializeChart() {
+            const ctx = document.getElementById('spectrum-chart').getContext('2d');
+            
+            chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Intensity',
+                        data: [],
+                        borderColor: '#0ea5e9',
+                        backgroundColor: 'rgba(14, 165, 233, 0.1)',
+                        fill: true,
+                        tension: 0.1,
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'Quantum Dot Emission Spectrum'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            type: 'linear',
+                            title: {
+                                display: true,
+                                text: 'Photon Energy (eV)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Intensity (normalized)'
+                            },
+                            beginAtZero: true
+                        }
+                    },
+                    interaction: {
+                        intersect: false
+                    }
+                }
+            });
+        }
+        
+        function updateChart() {
+            const spectrum = simulator.generateSpectrum();
+            
+            if (spectrum.length === 0) {
+                chart.data.datasets[0].data = [];
+                chart.update();
+                return;
+            }
+            
+            // Convert to Chart.js format
+            const chartData = spectrum.map(point => ({
+                x: point.energy,
+                y: point.intensity
+            }));
+            
+            chart.data.datasets[0].data = chartData;
+            chart.options.plugins.title.text = 
+                `Quantum Dot ${simulator.spectrumType.charAt(0).toUpperCase() + simulator.spectrumType.slice(1)} Spectrum (${simulator.size} nm)`;
+            
+            chart.update('none'); // Fast update without animation
+        }
+        
+        function updateSimulatorFromControls() {
+            // Update size
+            const sizeSlider = document.getElementById('size-slider');
+            const sizeValue = document.getElementById('size-value');
+            simulator.size = parseFloat(sizeSlider.value);
+            sizeValue.textContent = `${simulator.size.toFixed(1)} nm`;
+            
+            // Update broadening
+            const broadeningSlider = document.getElementById('broadening-slider');
+            const broadeningValue = document.getElementById('broadening-value');
+            simulator.broadening = parseFloat(broadeningSlider.value);
+            broadeningValue.textContent = `${simulator.broadening.toFixed(2)} eV`;
+            
+            // Update spectrum type
+            const emissionRadio = document.getElementById('emission');
+            simulator.spectrumType = emissionRadio.checked ? 'emission' : 'absorption';
+            
+            // Update normalization
+            const normalizeCheckbox = document.getElementById('normalize');
+            simulator.normalize = normalizeCheckbox.checked;
+            
+            updateChart();
+        }
+        
+        function resetToDefaults() {
+            document.getElementById('size-slider').value = 10;
+            document.getElementById('broadening-slider').value = 0.05;
+            document.getElementById('emission').checked = true;
+            document.getElementById('normalize').checked = true;
+            
+            updateSimulatorFromControls();
+        }
+        
+        // Event listeners
+        window.addEventListener('DOMContentLoaded', () => {
+            initializeChart();
+            updateSimulatorFromControls();
+            
+            // Add event listeners to all controls
+            document.getElementById('size-slider').addEventListener('input', updateSimulatorFromControls);
+            document.getElementById('broadening-slider').addEventListener('input', updateSimulatorFromControls);
+            document.getElementById('emission').addEventListener('change', updateSimulatorFromControls);
+            document.getElementById('absorption').addEventListener('change', updateSimulatorFromControls);
+            document.getElementById('normalize').addEventListener('change', updateSimulatorFromControls);
+        });
+    </script>
+</body>
+</html>
