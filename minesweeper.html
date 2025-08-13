@@ -3,7 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minesweeper Game - Kelly Interiano</title>
+    <title>Interactive Minesweeper Game - Kelly Interiano</title>
+    <meta name="description" content="Play Kelly Interiano's interactive Minesweeper game - a Java-to-JavaScript conversion showcasing object-oriented programming, game logic, and web development skills.">
+    <meta name="keywords" content="Minesweeper Game, Java, JavaScript, Object-oriented Programming, Game Development, Interactive Demo, Kelly Interiano">
+    <meta property="og:title" content="Interactive Minesweeper Game - Kelly Interiano">
+    <meta property="og:description" content="Play an interactive Minesweeper game converted from Java to JavaScript, demonstrating programming versatility and game development skills.">
+    <meta property="og:type" content="website">
+    <meta name="author" content="Kelly Interiano">
     <link rel="stylesheet" href="style.css">
     <style>
         .game-container {
@@ -246,29 +252,54 @@
         
         @media (max-width: 480px) {
             .cell {
-                width: 20px;
-                height: 20px;
-                font-size: 0.5rem;
+                width: 22px; /* Slightly larger for better touch */
+                height: 22px;
+                font-size: 0.55rem;
             }
             
             .game-controls {
                 flex-direction: column;
                 align-items: center;
+                gap: 0.75rem;
             }
             
             .difficulty-btn {
                 width: 100%;
-                max-width: 200px;
+                max-width: 250px;
+                min-height: 48px; /* Better touch target */
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
             }
             
             .game-actions {
                 flex-direction: column;
                 align-items: center;
+                gap: 1rem;
             }
             
             .action-btn {
                 width: 100%;
-                max-width: 200px;
+                max-width: 250px;
+                min-height: 48px; /* Better touch target */
+                padding: 0.875rem 1.5rem;
+                font-size: 1rem;
+            }
+            
+            .back-link {
+                padding: 0.5rem;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+            }
+            
+            .game-stats {
+                gap: 0.75rem;
+                justify-content: center;
+            }
+            
+            .stat {
+                min-width: 90px;
+                padding: 0.875rem 0.5rem;
             }
         }
     </style>
