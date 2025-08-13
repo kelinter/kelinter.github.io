@@ -338,7 +338,7 @@
             constructor(row, col) {
                 this.row = row;
                 this.col = col;
-                this.hasMine = false;
+                this._hasMine = false;
                 this.revealed = false;
                 this.flagged = false;
                 this.adjacentMines = 0;
@@ -361,11 +361,11 @@
             }
             
             hasMine() {
-                return this.hasMine;
+                return this._hasMine;
             }
             
             setHasMine(hasMine) {
-                this.hasMine = hasMine;
+                this._hasMine = hasMine;
             }
             
             isRevealed() {
@@ -388,7 +388,7 @@
                 if (!this.revealed) {
                     return this.flagged ? "F" : ".";
                 }
-                if (this.hasMine) {
+                if (this._hasMine) {
                     return "*";
                 }
                 return this.adjacentMines === 0 ? " " : this.adjacentMines.toString();
