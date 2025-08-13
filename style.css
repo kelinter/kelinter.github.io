@@ -200,9 +200,15 @@ button:hover {
 }
 
 .social-icon {
-  width: 40px;
-  height: 40px;
-  margin: 0 10px;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto;
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
 }
 
 /* Mobile Responsive Design */
