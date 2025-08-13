@@ -35,6 +35,31 @@
       50% { border-color: #0ea5e9; }
     }
 
+    /* Mobile responsive typewriter */
+    @media screen and (max-width: 768px) {
+      .typewriter h1 {
+        font-size: 2rem;
+        animation: typing-mobile 3.5s steps(20, end), blink-caret 0.75s step-end infinite;
+      }
+      
+      @keyframes typing-mobile {
+        from { width: 0; }
+        to { width: 10em; }
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      .typewriter h1 {
+        font-size: 1.5rem;
+        animation: typing-small 3.5s steps(15, end), blink-caret 0.75s step-end infinite;
+      }
+      
+      @keyframes typing-small {
+        from { width: 0; }
+        to { width: 8em; }
+      }
+    }
+
     /* Full-width navigation bar styles */
     nav {
       width: 100%;
