@@ -435,6 +435,17 @@ button:hover {
   border-color: #0284c7;
 }
 
+.link-btn.play-btn {
+  background: #10b981;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.link-btn.play-btn:hover {
+  background: #059669;
+  border-color: #059669;
+}
+
 .link-btn svg {
   width: 16px;
   height: 16px;

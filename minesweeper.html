@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minesweeper Game - Kelly Interiano</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .game-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(15, 23, 42, 0.1);
+        }
+        
+        .game-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .game-header h1 {
+            color: #0f172a;
+            margin-bottom: 0.5rem;
+        }
+        
+        .attribution {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+        
+        .attribution a {
+            color: #0ea5e9;
+            text-decoration: none;
+        }
+        
+        .attribution a:hover {
+            text-decoration: underline;
+        }
+        
+        .game-controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .difficulty-btn {
+            padding: 0.75rem 1.5rem;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+        
+        .difficulty-btn:hover {
+            background: #0284c7;
+        }
+        
+        .difficulty-btn.active {
+            background: #0f172a;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            background: #f8fafc;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 120px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0f172a;
+            display: block;
+        }
+        
+        .stat-label {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-top: 0.25rem;
+        }
+        
+        .game-board {
+            display: grid;
+            gap: 1px;
+            background: #64748b;
+            padding: 2px;
+            border-radius: 8px;
+            margin: 0 auto 2rem;
+            max-width: fit-content;
+            overflow: auto;
+            user-select: none;
+        }
+        
+        .cell {
+            width: 28px;
+            height: 28px;
+            background: #e2e8f0;
+            border: 1px outset #cbd5e1;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.1s;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        
+        .cell:hover:not(.revealed):not(.flagged) {
+            background: #cbd5e1;
+        }
+        
+        .cell.revealed {
+            background: #f8fafc;
+            border: 1px inset #e2e8f0;
+            cursor: default;
+        }
+        
+        .cell.mine {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .cell.flagged {
+            background: #fbbf24;
+            color: white;
+        }
+        
+        .cell.number-1 { color: #1e40af; }
+        .cell.number-2 { color: #059669; }
+        .cell.number-3 { color: #dc2626; }
+        .cell.number-4 { color: #7c3aed; }
+        .cell.number-5 { color: #d97706; }
+        .cell.number-6 { color: #db2777; }
+        .cell.number-7 { color: #000000; }
+        .cell.number-8 { color: #6b7280; }
+        
+        .game-message {
+            text-align: center;
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .game-message.show {
+            display: block;
+        }
+        
+        .game-message.win {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .game-message.lost {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .game-actions {
+            text-align: center;
+            gap: 1rem;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .action-btn {
+            padding: 0.75rem 2rem;
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-family: inherit;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .action-btn:hover {
+            background: #0284c7;
+        }
+        
+        .action-btn.secondary {
+            background: #64748b;
+        }
+        
+        .action-btn.secondary:hover {
+            background: #475569;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            color: #0284c7;
+        }
+        
+        @media (max-width: 768px) {
+            .game-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+            
+            .cell {
+                width: 24px;
+                height: 24px;
+                font-size: 0.625rem;
+            }
+            
+            .game-stats {
+                gap: 1rem;
+            }
+            
+            .stat {
+                min-width: 100px;
+                padding: 0.75rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .cell {
+                width: 20px;
+                height: 20px;
+                font-size: 0.5rem;
+            }
+            
+            .game-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .difficulty-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+            
+            .game-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-btn {
+                width: 100%;
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <a href="portfolio.html" class="back-link">← Back to Portfolio</a>
+        
+        <div class="game-header">
+            <h1>Minesweeper Game</h1>
+            <p>Use deductive reasoning to find all mines without clicking on them!</p>
+            <div class="attribution">
+                Ported from original <a href="https://github.com/kelinter/MineSweeperGame" target="_blank">Java implementation</a> 
+                | Right-click to flag cells
+            </div>
+        </div>
+        
+        <div class="game-controls">
+            <button class="difficulty-btn active" onclick="setDifficulty('BEGINNER')">Beginner (8×8)</button>
+            <button class="difficulty-btn" onclick="setDifficulty('INTERMEDIATE')">Intermediate (16×16)</button>
+            <button class="difficulty-btn" onclick="setDifficulty('EXPERT')">Expert (22×22)</button>
+        </div>
+        
+        <div class="game-stats">
+            <div class="stat">
+                <span class="stat-value" id="mines-count">10</span>
+                <div class="stat-label">Mines</div>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="flags-count">0</span>
+                <div class="stat-label">Flags</div>
+            </div>
+            <div class="stat">
+                <span class="stat-value" id="timer">000</span>
+                <div class="stat-label">Time (s)</div>
+            </div>
+        </div>
+        
+        <div class="game-message" id="game-message"></div>
+        
+        <div class="game-board" id="game-board"></div>
+        
+        <div class="game-actions">
+            <button class="action-btn" onclick="startNewGame()">New Game</button>
+            <a href="https://github.com/kelinter/MineSweeperGame" target="_blank" class="action-btn secondary">View Java Source</a>
+        </div>
+    </div>
+    
+    <script>
+        // GameState enum equivalent
+        const GameState = {
+            NOT_STARTED: 'NOT_STARTED',
+            RUNNING: 'RUNNING',
+            WON: 'WON',
+            LOST: 'LOST'
+        };
+        
+        // Difficulty enum equivalent (matching your Java implementation)
+        const Difficulty = {
+            BEGINNER: { name: 'BEGINNER', rows: 8, cols: 8, mines: 10 },
+            INTERMEDIATE: { name: 'INTERMEDIATE', rows: 16, cols: 16, mines: 40 },
+            EXPERT: { name: 'EXPERT', rows: 22, cols: 22, mines: 99 }
+        };
+        
+        // Cell class (ported from your Java Cell.java)
+        class Cell {
+            constructor(row, col) {
+                this.row = row;
+                this.col = col;
+                this.hasMine = false;
+                this.revealed = false;
+                this.flagged = false;
+                this.adjacentMines = 0;
+            }
+            
+            reveal() {
+                this.revealed = true;
+            }
+            
+            toggleFlag() {
+                this.flagged = !this.flagged;
+            }
+            
+            getRow() {
+                return this.row;
+            }
+            
+            getCol() {
+                return this.col;
+            }
+            
+            hasMine() {
+                return this.hasMine;
+            }
+            
+            setHasMine(hasMine) {
+                this.hasMine = hasMine;
+            }
+            
+            isRevealed() {
+                return this.revealed;
+            }
+            
+            isFlagged() {
+                return this.flagged;
+            }
+            
+            getAdjacentMines() {
+                return this.adjacentMines;
+            }
+            
+            setAdjacentMines(count) {
+                this.adjacentMines = count;
+            }
+            
+            toString() {
+                if (!this.revealed) {
+                    return this.flagged ? "F" : ".";
+                }
+                if (this.hasMine) {
+                    return "*";
+                }
+                return this.adjacentMines === 0 ? " " : this.adjacentMines.toString();
+            }
+        }
+        
+        // Timer class (ported from your Java Timer.java)
+        class Timer {
+            constructor() {
+                this.seconds = 0;
+                this.interval = null;
+                this.running = false;
+            }
+            
+            start() {
+                if (!this.running) {
+                    this.running = true;
+                    this.interval = setInterval(() => {
+                        this.seconds++;
+                        this.updateDisplay();
+                    }, 1000);
+                }
+            }
+            
+            stop() {
+                if (this.running) {
+                    this.running = false;
+                    clearInterval(this.interval);
+                }
+            }
+            
+            reset() {
+                this.stop();
+                this.seconds = 0;
+                this.updateDisplay();
+            }
+            
+            getSeconds() {
+                return this.seconds;
+            }
+            
+            updateDisplay() {
+                document.getElementById('timer').textContent = this.seconds.toString().padStart(3, '0');
+            }
+        }
+        
+        // MinesweeperBoard class (ported from your Java MinesweeperBoard.java)
+        class MinesweeperBoard {
+            constructor(rows, cols, mineCount) {
+                this.rows = rows;
+                this.cols = cols;
+                this.mineCount = mineCount;
+                this.cells = [];
+                this.initializeBoard();
+            }
+            
+            initializeBoard() {
+                this.cells = new Array(this.rows);
+                for (let r = 0; r < this.rows; r++) {
+                    this.cells[r] = new Array(this.cols);
+                    for (let c = 0; c < this.cols; c++) {
+                        this.cells[r][c] = new Cell(r, c);
+                    }
+                }
+            }
+            
+            placeMines() {
+                let placed = 0;
+                while (placed < this.mineCount) {
+                    let r = Math.floor(Math.random() * this.rows);
+                    let c = Math.floor(Math.random() * this.cols);
+                    if (!this.cells[r][c].hasMine()) {
+                        this.cells[r][c].setHasMine(true);
+                        placed++;
+                    }
+                }
+            }
+            
+            placeMinesExcluding(safeRow, safeCol) {
+                // Clear existing mines
+                for (let r = 0; r < this.rows; r++) {
+                    for (let c = 0; c < this.cols; c++) {
+                        this.cells[r][c].setHasMine(false);
+                        this.cells[r][c].setAdjacentMines(0);
+                    }
+                }
+                
+                // Place mines avoiding safe cell
+                let placed = 0;
+                while (placed < this.mineCount) {
+                    let r = Math.floor(Math.random() * this.rows);
+                    let c = Math.floor(Math.random() * this.cols);
+                    if ((r === safeRow && c === safeCol) || this.cells[r][c].hasMine()) {
+                        continue;
+                    } else {
+                        this.cells[r][c].setHasMine(true);
+                        placed++;
+                    }
+                }
+                
+                this.calculateAdjacentMines();
+            }
+            
+            calculateAdjacentMines() {
+                for (let r = 0; r < this.rows; r++) {
+                    for (let c = 0; c < this.cols; c++) {
+                        if (!this.cells[r][c].hasMine()) {
+                            let count = 0;
+                            for (let dr = -1; dr <= 1; dr++) {
+                                for (let dc = -1; dc <= 1; dc++) {
+                                    let nr = r + dr;
+                                    let nc = c + dc;
+                                    if (this.isValidCell(nr, nc) && this.cells[nr][nc].hasMine()) {
+                                        count++;
+                                    }
+                                }
+                            }
+                            this.cells[r][c].setAdjacentMines(count);
+                        }
+                    }
+                }
+            }
+            
+            isValidCell(row, col) {
+                return row >= 0 && row < this.rows && col >= 0 && col < this.cols;
+            }
+            
+            getCell(row, col) {
+                return this.cells[row][col];
+            }
+            
+            revealAdjacentCells(row, col) {
+                for (let dr = -1; dr <= 1; dr++) {
+                    for (let dc = -1; dc <= 1; dc++) {
+                        let nr = row + dr;
+                        let nc = col + dc;
+                        if (this.isValidCell(nr, nc)) {
+                            let cell = this.cells[nr][nc];
+                            if (!cell.isRevealed() && !cell.isFlagged()) {
+                                cell.reveal();
+                                if (cell.getAdjacentMines() === 0 && !cell.hasMine()) {
+                                    this.revealAdjacentCells(nr, nc);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            
+            revealAllMines() {
+                for (let r = 0; r < this.rows; r++) {
+                    for (let c = 0; c < this.cols; c++) {
+                        if (this.cells[r][c].hasMine()) {
+                            this.cells[r][c].reveal();
+                        }
+                    }
+                }
+            }
+        }
+        
+        // MinesweeperGame class (ported from your Java MinesweeperGame.java)
+        class MinesweeperGame {
+            constructor(difficulty) {
+                this.difficulty = difficulty;
+                this.minesweeperBoard = new MinesweeperBoard(
+                    difficulty.rows,
+                    difficulty.cols,
+                    difficulty.mines
+                );
+                this.gameState = GameState.NOT_STARTED;
+                this.timer = new Timer();
+                this.firstClickDone = false;
+                this.flagCount = 0;
+            }
+            
+            clickCell(row, col) {
+                const cell = this.minesweeperBoard.getCell(row, col);
+                
+                if (cell.isRevealed() || cell.isFlagged()) {
+                    return;
+                }
+                
+                if (this.gameState === GameState.NOT_STARTED) {
+                    this.minesweeperBoard.placeMinesExcluding(row, col);
+                    this.gameState = GameState.RUNNING;
+                    this.timer.start();
+                }
+                
+                cell.reveal();
+                
+                if (cell.hasMine()) {
+                    this.gameState = GameState.LOST;
+                    this.timer.stop();
+                    this.minesweeperBoard.revealAllMines();
+                } else if (cell.getAdjacentMines() === 0) {
+                    this.minesweeperBoard.revealAdjacentCells(row, col);
+                }
+                
+                this.checkWin();
+            }
+            
+            toggleFlag(row, col) {
+                const cell = this.minesweeperBoard.getCell(row, col);
+                if (!cell.isRevealed() && this.gameState === GameState.RUNNING) {
+                    cell.toggleFlag();
+                    this.flagCount += cell.isFlagged() ? 1 : -1;
+                    this.updateStats();
+                }
+            }
+            
+            checkWin() {
+                if (this.gameState !== GameState.RUNNING) return;
+                
+                let unrevealedNonMines = 0;
+                for (let r = 0; r < this.minesweeperBoard.rows; r++) {
+                    for (let c = 0; c < this.minesweeperBoard.cols; c++) {
+                        const cell = this.minesweeperBoard.getCell(r, c);
+                        if (!cell.isRevealed() && !cell.hasMine()) {
+                            unrevealedNonMines++;
+                        }
+                    }
+                }
+                
+                if (unrevealedNonMines === 0) {
+                    this.gameState = GameState.WON;
+                    this.timer.stop();
+                }
+            }
+            
+            updateStats() {
+                document.getElementById('mines-count').textContent = this.difficulty.mines;
+                document.getElementById('flags-count').textContent = this.flagCount;
+            }
+            
+            getGameState() {
+                return this.gameState;
+            }
+        }
+        
+        // Global game instance
+        let game;
+        let currentDifficulty = Difficulty.BEGINNER;
+        
+        function setDifficulty(diffName) {
+            // Update button states
+            document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            currentDifficulty = Difficulty[diffName];
+            startNewGame();
+        }
+        
+        function startNewGame() {
+            game = new MinesweeperGame(currentDifficulty);
+            renderBoard();
+            updateGameDisplay();
+            hideMessage();
+        }
+        
+        function renderBoard() {
+            const gameBoard = document.getElementById('game-board');
+            gameBoard.style.gridTemplateColumns = `repeat(${currentDifficulty.cols}, 1fr)`;
+            gameBoard.innerHTML = '';
+            
+            for (let row = 0; row < currentDifficulty.rows; row++) {
+                for (let col = 0; col < currentDifficulty.cols; col++) {
+                    const cellDiv = document.createElement('div');
+                    cellDiv.className = 'cell';
+                    cellDiv.dataset.row = row;
+                    cellDiv.dataset.col = col;
+                    
+                    cellDiv.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        handleCellClick(row, col);
+                    });
+                    
+                    cellDiv.addEventListener('contextmenu', (e) => {
+                        e.preventDefault();
+                        handleRightClick(row, col);
+                    });
+                    
+                    gameBoard.appendChild(cellDiv);
+                }
+            }
+        }
+        
+        function handleCellClick(row, col) {
+            if (game.getGameState() === GameState.LOST || game.getGameState() === GameState.WON) {
+                return;
+            }
+            
+            game.clickCell(row, col);
+            updateGameDisplay();
+            
+            if (game.getGameState() === GameState.WON) {
+                showMessage('🎉 Congratulations! You won!', 'win');
+            } else if (game.getGameState() === GameState.LOST) {
+                showMessage('💣 Game Over! You hit a mine!', 'lost');
+            }
+        }
+        
+        function handleRightClick(row, col) {
+            if (game.getGameState() === GameState.LOST || game.getGameState() === GameState.WON) {
+                return;
+            }
+            
+            game.toggleFlag(row, col);
+            updateGameDisplay();
+        }
+        
+        function updateGameDisplay() {
+            const cells = document.querySelectorAll('.cell');
+            cells.forEach(cellDiv => {
+                const row = parseInt(cellDiv.dataset.row);
+                const col = parseInt(cellDiv.dataset.col);
+                const cell = game.minesweeperBoard.getCell(row, col);
+                
+                cellDiv.className = 'cell';
+                cellDiv.innerHTML = '';
+                
+                if (cell.isFlagged()) {
+                    cellDiv.classList.add('flagged');
+                    cellDiv.innerHTML = '🚩';
+                } else if (cell.isRevealed()) {
+                    cellDiv.classList.add('revealed');
+                    
+                    if (cell.hasMine()) {
+                        cellDiv.classList.add('mine');
+                        cellDiv.innerHTML = '💣';
+                    } else if (cell.getAdjacentMines() > 0) {
+                        cellDiv.classList.add(`number-${cell.getAdjacentMines()}`);
+                        cellDiv.innerHTML = cell.getAdjacentMines();
+                    }
+                }
+            });
+            
+            game.updateStats();
+        }
+        
+        function showMessage(text, type) {
+            const message = document.getElementById('game-message');
+            message.textContent = text;
+            message.className = `game-message show ${type}`;
+        }
+        
+        function hideMessage() {
+            const message = document.getElementById('game-message');
+            message.className = 'game-message';
+        }
+        
+        // Initialize the game when page loads
+        window.addEventListener('DOMContentLoaded', () => {
+            startNewGame();
+        });
+    </script>
+</body>
+</html>
