@@ -313,14 +313,14 @@
             <p>Use deductive reasoning to find all mines without clicking on them!</p>
             <div class="attribution">
                 Ported from original <a href="https://github.com/kelinter/MineSweeperGame" target="_blank">Java implementation</a> 
-                | Right-click to flag cells
+                | Right-click or long-press (500ms) to flag cells
             </div>
         </div>
         
         <div class="game-controls">
-            <button class="difficulty-btn active" onclick="setDifficulty('BEGINNER')">Beginner (8×8)</button>
-            <button class="difficulty-btn" onclick="setDifficulty('INTERMEDIATE')">Intermediate (16×16)</button>
-            <button class="difficulty-btn" onclick="setDifficulty('EXPERT')">Expert (22×22)</button>
+            <button class="difficulty-btn active" onclick="setDifficulty('BEGINNER', this)">Beginner (8×8)</button>
+            <button class="difficulty-btn" onclick="setDifficulty('INTERMEDIATE', this)">Intermediate (16×16)</button>
+            <button class="difficulty-btn" onclick="setDifficulty('EXPERT', this)">Expert (22×22)</button>
         </div>
         
         <div class="game-stats">
@@ -663,17 +663,25 @@
         let game;
         let currentDifficulty = Difficulty.BEGINNER;
         
-        function setDifficulty(diffName) {
+        function setDifficulty(diffName, element) {
             // Update button states
             document.querySelectorAll('.difficulty-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            element.classList.add('active');
             
             currentDifficulty = Difficulty[diffName];
             startNewGame();
         }
         
         function startNewGame() {
+            // Stop and reset any existing timer
+            if (game && game.timer) {
+                game.timer.stop();
+                game.timer.reset();
+            }
+            
+            // Create new game instance
             game = new MinesweeperGame(currentDifficulty);
+            game.timer.reset(); // Ensure timer starts at 0
             renderBoard();
             updateGameDisplay();
             hideMessage();
@@ -691,14 +699,41 @@
                     cellDiv.dataset.row = row;
                     cellDiv.dataset.col = col;
                     
+                    let touchStartTime;
+                    let touchHoldTimer;
+                    
+                    // Regular click
                     cellDiv.addEventListener('click', (e) => {
                         e.preventDefault();
                         handleCellClick(row, col);
                     });
                     
+                    // Right-click (desktop)
                     cellDiv.addEventListener('contextmenu', (e) => {
                         e.preventDefault();
                         handleRightClick(row, col);
+                    });
+                    
+                    // Touch support for mobile
+                    cellDiv.addEventListener('touchstart', (e) => {
+                        e.preventDefault();
+                        touchStartTime = Date.now();
+                        touchHoldTimer = setTimeout(() => {
+                            handleRightClick(row, col);
+                        }, 500); // 500ms hold for flag
+                    });
+                    
+                    cellDiv.addEventListener('touchend', (e) => {
+                        e.preventDefault();
+                        clearTimeout(touchHoldTimer);
+                        const touchDuration = Date.now() - touchStartTime;
+                        if (touchDuration < 500) {
+                            handleCellClick(row, col);
+                        }
+                    });
+                    
+                    cellDiv.addEventListener('touchcancel', (e) => {
+                        clearTimeout(touchHoldTimer);
                     });
                     
                     gameBoard.appendChild(cellDiv);
