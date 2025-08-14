@@ -358,7 +358,8 @@ button:hover {
 .project-image {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   border-radius: 8px;
 }
 
@@ -516,6 +517,10 @@ button:hover {
   
   .project-content {
     padding: 1.5rem;
+  }
+  
+  .project-header {
+    height: 180px;
   }
   
   .project-links {
