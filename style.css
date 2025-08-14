@@ -841,8 +841,8 @@ button:hover {
 }
 
 .contact-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   filter: brightness(0) invert(1);
   transition: filter 0.3s ease;
 }
@@ -864,6 +864,24 @@ button:hover {
   font-weight: 400;
 }
 
+/* Tablet Footer Optimization */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .footer-contact {
+    gap: 1.5rem;
+  }
+  
+  .footer-contact a {
+    min-width: 180px;
+    min-height: 50px;
+    padding: 0.75rem 1.25rem;
+  }
+  
+  .contact-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 /* Mobile Footer Optimization */
 @media screen and (max-width: 768px) {
   .footer-contact {
@@ -873,8 +891,14 @@ button:hover {
   
   .footer-contact a {
     justify-content: center;
-    min-width: 200px;
-    min-height: 52px;
+    min-width: 220px;
+    min-height: 56px;
+    padding: 1rem 1.5rem;
+  }
+  
+  .contact-icon {
+    width: 20px;
+    height: 20px;
   }
   
   .footer {
@@ -913,8 +937,8 @@ button:hover {
 }
 
 .contact-btn-icon {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   filter: brightness(0) invert(1);
 }
 
@@ -934,6 +958,20 @@ button:hover {
   text-decoration: underline;
 }
 
+/* Tablet Contact Section */
+@media screen and (max-width: 1024px) and (min-width: 769px) {
+  .contact-btn {
+    min-width: 160px;
+    min-height: 50px;
+    padding: 0.875rem 1.75rem;
+  }
+  
+  .contact-btn-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
 /* Mobile Contact Section */
 @media screen and (max-width: 768px) {
   .contact-cta {
@@ -943,8 +981,14 @@ button:hover {
   
   .contact-btn {
     justify-content: center;
-    min-width: 200px;
-    min-height: 52px;
+    min-width: 220px;
+    min-height: 56px;
+    padding: 1rem 2rem;
+  }
+  
+  .contact-btn-icon {
+    width: 20px;
+    height: 20px;
   }
   
   .contact-section {
