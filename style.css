@@ -843,8 +843,8 @@ button:hover {
 .contact-icon {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(1);
-  transition: filter 0.3s ease;
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 .footer-contact a:hover {
@@ -854,7 +854,8 @@ button:hover {
 }
 
 .footer-contact a:hover .contact-icon {
-  filter: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(175deg);
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .footer-note {
@@ -939,13 +940,19 @@ button:hover {
 .contact-btn-icon {
   width: 18px;
   height: 18px;
-  filter: brightness(0) invert(1);
+  opacity: 0.9;
+  transition: all 0.3s ease;
 }
 
 .contact-btn:hover {
   background: #0284c7;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+}
+
+.contact-btn:hover .contact-btn-icon {
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .contact-link {
