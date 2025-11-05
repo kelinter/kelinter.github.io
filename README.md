@@ -2,7 +2,7 @@
 
 A professional portfolio website showcasing computer engineering projects and technical skills. Built with modern web technologies and designed for mobile-first responsive experience.
 
-**Live Site**: https://kelinter.github.io/Personal-Website/
+**Live Site**: https://kelinter.github.io
 
 ## Overview
 
