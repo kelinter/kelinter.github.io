@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-  
+
 <head>
-    
+
     <title>Portfolio - Kelly Interiano | Computer Engineering Projects</title>
     <meta charset="utf-8" />
 	  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -25,7 +25,7 @@
   <header id="portfolio-header">
     <h1>Portfolio</h1>
   </header>
-  
+
   <nav>
 <ul>
   <li>
@@ -34,7 +34,7 @@
     <li>
     <a href="about me.html">About me</a>
     </li>
-    <li> 
+    <li>
       <a href="portfolio.html">Portfolio</a>
       </li>
   </ul>
@@ -45,18 +45,64 @@
   </div>
 
   <div class="projects-grid">
+
+      <!-- Project Card 0: Unity WebGL Prototype -->
+  <div class="project-card">
+    <div class="project-header unity-header">
+      <!-- embedded unity webgl demo -->
+      <div class="unity-embed">
+        <iframe
+          src="unity/mini1/WebPrototypeMini1/index.html"
+          title="Unity WebGL Prototype"
+          loading="lazy"
+          allow="fullscreen"
+        ></iframe>
+      </div>
+    </div>
+
+    <div class="project-content">
+      <h3 class="project-title">Unity WebGL Prototype</h3>
+      <p class="project-description">
+        A live Unity WebGL mini-prototype deployed with GitHub Pages. Click the cube to change its color.
+      </p>
+
+      <div class="tech-stack">
+        <span class="tech-badge">Unity</span>
+        <span class="tech-badge">WebGL</span>
+        <span class="tech-badge">C#</span>
+        <span class="tech-badge">Input System</span>
+        <span class="tech-badge">GitHub Pages</span>
+      </div>
+
+      <div class="project-links">
+        <a href="unity/mini1/WebPrototypeMini1/" class="link-btn play-btn">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          Open Demo
+        </a>
+      </div>
+
+      <div class="project-meta">
+        <span class="meta-item">🕸️ Unity Web</span>
+        <span class="meta-item">Live</span>
+      </div>
+    </div>
+  </div>
+
+
     <!-- Project Card 1: Minesweeper-->
     <div class="project-card">
       <div class="project-header">
         <img src="./assets/minesweeper.png" alt="Minesweeper game interface screenshot" class="project-image">
       </div>
-      
+
       <div class="project-content">
         <h3 class="project-title">Minesweeper Game</h3>
         <p class="project-description">
           Classic Minesweeper implementation featuring clean game logic, intuitive user interface, and customizable difficulty levels. Built with object-oriented programming principles and efficient algorithms for mine placement and adjacent cell calculation.
         </p>
-        
+
         <div class="tech-stack">
           <span class="tech-badge">Java</span>
           <span class="tech-badge">JavaFX</span>
@@ -65,7 +111,7 @@
           <span class="tech-badge">Game Logic</span>
           <span class="tech-badge">OOP</span>
         </div>
-        
+
         <div class="project-links">
           <a href="minesweeper.html" class="link-btn play-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -80,7 +126,7 @@
             Java Source
           </a>
         </div>
-        
+
         <div class="project-meta">
           <span class="meta-item">🎮 Game Development</span>
           <span class="meta-item">Ongoing</span>
@@ -93,13 +139,13 @@
       <div class="project-header">
         <img src="./assets/quantomdot.png" alt="Quantum dot spectrum analysis visualization" class="project-image">
       </div>
-      
+
       <div class="project-content">
         <h3 class="project-title">Quantum Dot Spectrum Analysis</h3>
         <p class="project-description">
           Advanced physics computational project analyzing quantum dot spectrums and optical properties. Implements numerical methods and data visualization to study quantum confinement effects and energy level calculations in semiconductor nanostructures.
         </p>
-        
+
         <div class="tech-stack">
           <span class="tech-badge">Python</span>
           <span class="tech-badge">NumPy</span>
@@ -108,7 +154,7 @@
           <span class="tech-badge">Chart.js</span>
           <span class="tech-badge">Quantum Physics</span>
         </div>
-        
+
         <div class="project-links">
           <a href="quantum-dots.html" class="link-btn play-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -123,7 +169,7 @@
             Python Source
           </a>
         </div>
-        
+
         <div class="project-meta">
           <span class="meta-item">🔬 Physics Research</span>
           <span class="meta-item">Computational</span>
@@ -136,13 +182,13 @@
       <div class="project-header">
         <img src="./assets/braintumor.png" alt="Brain tumor classification project visualization" class="project-image">
       </div>
-      
+
       <div class="project-content">
         <h3 class="project-title">Brain Tumor Classification</h3>
         <p class="project-description">
           Machine learning project for automated brain tumor detection and classification from medical imaging data. Implements deep learning models with high accuracy rates, featuring data preprocessing, model training, and performance evaluation for medical diagnosis applications.
         </p>
-        
+
         <div class="tech-stack">
           <span class="tech-badge">Python</span>
           <span class="tech-badge">TensorFlow</span>
@@ -150,7 +196,7 @@
           <span class="tech-badge">CNN</span>
           <span class="tech-badge">Medical Imaging</span>
         </div>
-        
+
         <div class="project-links">
           <a href="brain-tumor.html" class="link-btn play-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -165,7 +211,7 @@
             Python Source
           </a>
         </div>
-        
+
         <div class="project-meta">
           <span class="meta-item">🤖 AI/Machine Learning</span>
           <span class="meta-item">Healthcare Technologies</span>
@@ -178,20 +224,20 @@
       <div class="project-header">
         <img src="./assets/website.png" alt="Professional portfolio website responsive design" class="project-image">
       </div>
-      
+
       <div class="project-content">
         <h3 class="project-title">Professional Portfolio Website</h3>
         <p class="project-description">
           Responsive personal website built with modern web technologies. Features professional design, contact form integration, mobile optimization, and automated deployment via GitHub Pages. Showcases engineering projects with clean, accessible interface.
         </p>
-        
+
         <div class="tech-stack">
           <span class="tech-badge">HTML5</span>
           <span class="tech-badge">CSS3</span>
           <span class="tech-badge">JavaScript</span>
           <span class="tech-badge">GitHub Pages</span>
         </div>
-        
+
         <div class="project-links">
           <a href="https://github.com/kelinter/Personal-Website" target="_blank" class="link-btn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -204,7 +250,7 @@
             View Project Code
           </a>
         </div>
-        
+
         <div class="project-meta">
           <span class="meta-item">👩‍🏫 Education</span>
           <span class="meta-item">Ongoing</span>
