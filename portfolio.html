@@ -1,6 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Portfolio - Kelly Interiano | Computer Engineering Projects</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="View Kelly Interiano's computer engineering portfolio: Brain Tumor Classification (96% accuracy), Quantum Dot Spectrum Analysis, interactive Minesweeper game, and web development projects.">
+  <meta name="keywords" content="Kelly Interiano, Portfolio, Computer Engineering Projects, Machine Learning, AI, Brain Tumor Classification, Quantum Physics, Game Development, Minesweeper">
+  <meta property="og:title" content="Portfolio - Kelly Interiano | Computer Engineering Projects">
+  <meta property="og:description" content="Interactive portfolio showcasing AI/ML projects, quantum physics simulations, and software engineering skills. Real projects with working demonstrations.">
+  <meta property="og:type" content="website">
+  <meta name="author" content="Kelly Interiano">
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body id="body3">
+
+  <header id="portfolio-header">
+    <h1>Portfolio</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li>
+        <a href="index.html">Home</a>
+      </li>
+      <li>
+        <a href="about me.html">About me</a>
+      </li>
+      <li>
+        <a href="portfolio.html">Portfolio</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="portfolio-intro">
+    <p>Here are some of my key projects that showcase my software and hardware engineering skills. Each project demonstrates different aspects of Computer Engineering, from embedded systems to AI/ML and full-stack development.</p>
+  </div>
+
+  <div class="projects-grid">
+
+    <!-- Project Card 0: Unity WebGL Prototype -->
+    <div class="project-card">
+      <div class="project-header unity-header">
+        <div class="unity-embed">
+          <iframe
+            src="unity/mini1/WebPrototypeMini1/index.html"
+            title="Unity WebGL Prototype"
+            loading="lazy"
+            allow="fullscreen"
+          ></iframe>
+        </div>
+      </div>
+
+      <div class="project-content">
+        <h3 class="project-title">Unity WebGL Prototype</h3>
+        <p class="project-description">
+          A live Unity WebGL mini-prototype deployed with GitHub Pages. Click the cube to change its color.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-badge">Unity</span>
+          <span class="tech-badge">WebGL</span>
+          <span class="tech-badge">C#</span>
+          <span class="tech-badge">Input System</span>
+          <span class="tech-badge">GitHub Pages</span>
+        </div>
+
+        <div class="project-links">
+          <a href="unity/mini1/WebPrototypeMini1/" class="link-btn play-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Open Demo
+          </a>
+        </div>
+
+        <div class="project-meta">
+          <span class="meta-item">🕸️ Unity Web</span>
+          <span class="meta-item">Live</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Card 1: Minesweeper -->
+    <div class="project-card">
+      <div class="project-header">
+        <img src="./assets/minesweeper.png" alt="Minesweeper game interface screenshot" class="project-image">
+      </div>
+
+      <div class="project-content">
+        <h3 class="project-title">Minesweeper Game</h3>
+        <p class="project-description">
+          Classic Minesweeper implementation featuring clean game logic, intuitive user interface, and customizable difficulty levels. Built with object-oriented programming principles and efficient algorithms for mine placement and adjacent cell calculation.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-badge">Java</span>
+          <span class="tech-badge">JavaFX</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">HTML/CSS</span>
+          <span class="tech-badge">Game Logic</span>
+          <span class="tech-badge">OOP</span>
+        </div>
+
+        <div class="project-links">
+          <a href="minesweeper.html" class="link-btn play-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+            Play Game
+          </a>
+          <a href="https://github.com/kelinter/MineSweeperGame" target="_blank" class="link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            Java Source
+          </a>
+        </div>
+
+        <div class="project-meta">
+          <span class="meta-item">🎮 Game Development</span>
+          <span class="meta-item">Ongoing</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Card 2: Quantum Dot Spectrum -->
+    <div class="project-card">
+      <div class="project-header">
+        <img src="./assets/quantomdot.png" alt="Quantum dot spectrum analysis visualization" class="project-image">
+      </div>
+
+      <div class="project-content">
+        <h3 class="project-title">Quantum Dot Spectrum Analysis</h3>
+        <p class="project-description">
+          Advanced physics computational project analyzing quantum dot spectrums and optical properties. Implements numerical methods and data visualization to study quantum confinement effects and energy level calculations in semiconductor nanostructures.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">NumPy</span>
+          <span class="tech-badge">Matplotlib</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">Chart.js</span>
+          <span class="tech-badge">Quantum Physics</span>
+        </div>
+
+        <div class="project-links">
+          <a href="quantum-dots.html" class="link-btn play-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/>
+            </svg>
+            Analyze Spectrum
+          </a>
+          <a href="https://github.com/kelinter/quantum-dot-spectrum" target="_blank" class="link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            Python Source
+          </a>
+        </div>
+
+        <div class="project-meta">
+          <span class="meta-item">🔬 Physics Research</span>
+          <span class="meta-item">Computational</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project Card 3: Brain Tumor Classification -->
+    <div class="project-card">
+      <div class="project-header">
+        <img src="./assets/braintumor.png" alt="Brain tumor classification project visualization" class="project-image">
+      </div>
+
+      <div class="project-content">
+        <h3 class="project-title">Brain Tumor Classification</h3>
+        <p class="project-description">
+          Machine learning project for automated brain tumor detection and classification from medical imaging data. Implements deep learning models with high accuracy rates, featuring data preprocessing, model training, and performance evaluation for medical diagnosis applications.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">TensorFlow</span>
+          <span class="tech-badge">MobileNetV2</span>
+          <span class="tech-badge">CNN</span>
+          <span class="tech-badge">Medical Imaging</span>
+        </div>
+
+        <div class="project-links">
+          <a href="brain-tumor.html" class="link-btn play-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M3 3v18h18V3H3zm8 14H9V9h2v8zm4 0h-2V7h2v10z"/>
+            </svg>
+            View Results
+          </a>
+          <a href="https://github.com/kelinter/brain-tumor-project" target="_blank" class="link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.30 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+            Python Source
+          </a>
+        </div>
+
+        <div class="project-meta">
+          <span class="meta-item">🤖 AI/Machine Learning</span>
+          <span class="meta-item">Healthcare Technologies</span>
+        </div>
+      </div>
+    </div>
+
     <!-- Project Card 4: Personal Website -->
     <div class="project-card">
-      ...
+      <div class="project-header">
+        <img src="./assets/website.png" alt="Professional portfolio website responsive design" class="project-image">
+      </div>
+
+      <div class="project-content">
+        <h3 class="project-title">Professional Portfolio Website</h3>
+        <p class="project-description">
+          Responsive personal website built with modern web technologies. Features professional design, contact form integration, mobile optimization, and automated deployment via GitHub Pages. Showcases engineering projects with clean, accessible interface.
+        </p>
+
+        <div class="tech-stack">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">CSS3</span>
+          <span class="tech-badge">JavaScript</span>
+          <span class="tech-badge">GitHub Pages</span>
+        </div>
+
+        <div class="project-links">
+          <a href="https://github.com/kelinter/Personal-Website" target="_blank" class="link-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14,2 14,8 20,8"/>
+              <line x1="16" y1="13" x2="8" y2="13"/>
+              <line x1="16" y1="17" x2="8" y2="17"/>
+              <polyline points="10,9 9,9 8,9"/>
+            </svg>
+            View Project Code
+          </a>
+        </div>
+
+        <div class="project-meta">
+          <span class="meta-item">👩‍🏫 Education</span>
+          <span class="meta-item">Ongoing</span>
+        </div>
+      </div>
     </div>
 
     <!-- Project Card 5: Phoenix Full-Stack App -->
@@ -49,3 +298,32 @@
     </div>
 
   </div>
+
+  <div class="portfolio-footer">
+    <p>Want to see more of my work? Check out my <a href="https://github.com/kelinter" target="_blank" class="github-link">GitHub profile</a> for additional projects and contributions.</p>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-contact">
+        <a href="mailto:kki001@bucknell.edu">
+          <img src="./assets/gmail.png" alt="Email" class="contact-icon">
+          kki001@bucknell.edu
+        </a>
+        <a href="https://www.linkedin.com/in/kelly-interiano/" target="_blank">
+          <img src="./assets/linkedin.png" alt="LinkedIn" class="contact-icon">
+          LinkedIn
+        </a>
+        <a href="https://github.com/kelinter" target="_blank">
+          <img src="./assets/github.png" alt="GitHub" class="contact-icon">
+          GitHub
+        </a>
+      </div>
+      <div class="footer-note">
+        Available for opportunities • Expected graduation May 2026
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
