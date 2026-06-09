@@ -75,9 +75,9 @@ This portfolio contains interactive demonstrations of real projects from my comp
 
 ## Contact
 
-**Kelly Interiano**  
-Computer Engineering Student, Bucknell University  
-Email: kki001@bucknell.edu  
+**Kelly Interiano**
+Computer Engineering Graduate, Bucknell University
+Email: Email: kellyinteriano10@gmail.com
 LinkedIn: https://www.linkedin.com/in/kelly-interiano
 
 This portfolio demonstrates practical application of computer engineering concepts through working project implementations and professional web development practices.
